@@ -9,7 +9,7 @@ export default class Cliente extends BaseModel {
   public cpf: number;
 
   @column()
-  public numero: string;
+  public telefone: string;
 
   @column()
   public nome: string;
