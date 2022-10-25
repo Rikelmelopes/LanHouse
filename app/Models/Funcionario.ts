@@ -9,6 +9,9 @@ export default class Funcionario extends BaseModel {
   public cpf: string;
 
   @column()
+  public salario: number;
+
+  @column()
   public nome: string;
 
   @column()

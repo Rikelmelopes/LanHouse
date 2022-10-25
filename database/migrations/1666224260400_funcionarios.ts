@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments("id");
 
       table.integer("cpf", 11).notNullable();
+      table.integer("salario").notNullable();
       table.string("nome").notNullable();
       table.string("telefone", 14);
       table.string("endereco");

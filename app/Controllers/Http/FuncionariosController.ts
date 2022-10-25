@@ -36,6 +36,7 @@ export default class FuncionariosController {
 
     const dados = request.only([
       "cpf",
+      "salario",
       "nome",
       "telefone",
       "endereco",
