@@ -6,7 +6,7 @@ export default class Provedore extends BaseModel {
   public id: number;
 
   @column()
-  public cnpj: number;
+  public cnpj: string;
 
   @column()
   public nome: string;
