@@ -198,8 +198,6 @@ export default class AlunosController {
   }
 }
 
-```
-
 
 
 import Cliente from "App/Models/Cliente";
@@ -290,3 +288,8 @@ export default class extends BaseSeeder {
     // Write your database queries inside the run method
   }
 }
+```
+
+
+
+
