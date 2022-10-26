@@ -199,3 +199,94 @@ export default class AlunosController {
 }
 
 ```
+
+
+
+import Cliente from "App/Models/Cliente";
+
+export default class extends BaseSeeder {
+  public async run() {
+    await Cliente.createMany([
+      {
+        cpf: 08113596119,
+        telefone: "5561981760878",
+        nome: "Rikelme",
+        endereco: "Rikelme@gmail.com",
+        dataNascimento: new Date(2001, 7, 7),
+        email: "Rikelme@gmail.com",
+      },
+    ]);
+    // Write your database queries inside the run method
+  }
+}
+
+
+import Computadore from "App/Models/Computadore";
+
+export default class extends BaseSeeder {
+  public async run() {
+    await Computadore.createMany([
+      {
+        preco: 2500.0,
+        processador: "I7",
+        placaVideo: "GTX 1050",
+        placaMae: "AsRock X670E",
+        gabinete: "RedDragon",
+        fonte: "Px850 V",
+        memoriaRam: "8Gb",
+      },
+    ]);
+    // Write your database queries inside the run method
+  }
+}
+
+
+import Funcionario from "App/Models/Funcionario";
+
+export default class extends BaseSeeder {
+  public async run() {
+    await Funcionario.createMany([
+      {
+        cpf: "08113596117",
+        salario: 2500,
+        nome: "Diogo",
+        telefone: "5561984654655",
+        endereco: "QNO 7 Conjunto F",
+        email: "diogo@gmail.com",
+        dataNascimento: new Date(2002, 8, 6),
+      },
+    ]);
+    // Write your database queries inside the run method
+  }
+}
+
+
+
+import Marca from "App/Models/Marca";
+
+export default class extends BaseSeeder {
+  public async run() {
+    await Marca.createMany([
+      {
+        nome: "Lenovo",
+      },
+    ]);
+    // Write your database queries inside the run method
+  }
+}
+
+
+
+import Provedore from 'App/Models/Provedore'
+
+export default class extends BaseSeeder {
+  public async run () {
+    await Provedore.createMany([
+      {
+        cnpj:'00.360.305/0001-04',
+        nome: 'DIGITECH TELECOM',
+      }
+    ])
+    // Write your database queries inside the run method
+  }
+}
