@@ -8,7 +8,6 @@ export default class extends BaseSeeder {
         {
           clienteId: 1,
           funcionarioId: 1,
-          computadorId: 1,
         },
       ]);
       // Write your database queries inside the run method

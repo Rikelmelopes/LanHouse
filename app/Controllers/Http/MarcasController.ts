@@ -3,31 +3,31 @@
 import Marca from "App/Models/Marca";
 
 export default class MarcasController {
-  index() {
-    return Marca.all();
+  async index() {
+    return await Marca.query().preload("computadores");
   }
 
-  store({ request }) {
-    const dados = request.only(["nome"]);
-    return Marca.create(dados);
+  async store({ request }) {
+    const dados = await request.only(["nome"]);
+    return await Marca.create(dados);
   }
 
-  show({ request }) {
-    const id = request.param("id");
-    return Marca.findOrFail(id);
+  async show({ request }) {
+    const id = await request.param("id");
+    return await Marca.findOrFail(id);
   }
 
   async destroy({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const marca = await Marca.findOrFail(id);
     return marca.delete();
   }
 
   async update({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const marca = await Marca.findOrFail(id);
 
-    const dados = request.only(["nome"]);
+    const dados = await request.only(["nome"]);
 
     marca.merge(dados).save();
 

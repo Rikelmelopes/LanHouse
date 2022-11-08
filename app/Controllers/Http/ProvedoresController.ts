@@ -3,18 +3,18 @@
 import Provedore from "App/Models/Provedore";
 
 export default class ProvedoresController {
-  index() {
-    return Provedore.all();
+  async index() {
+    return await Provedore.query();
   }
 
-  store({ request }) {
-    const dados = request.only(["cnpj", "nome"]);
-    return Provedore.create(dados);
+  async store({ request }) {
+    const dados = await request.only(["cnpj", "nome"]);
+    return await Provedore.create(dados);
   }
 
-  show({ request }) {
-    const id = request.param("id");
-    return Provedore.findOrFail(id);
+  async show({ request }) {
+    const id = await request.param("id");
+    return await Provedore.findOrFail(id);
   }
 
   async destroy({ request }) {
@@ -24,10 +24,10 @@ export default class ProvedoresController {
   }
 
   async update({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const provedore = await Provedore.findOrFail(id);
 
-    const dados = request.only(["cnpj", "nome"]);
+    const dados = await request.only(["cnpj", "nome"]);
 
     provedore.merge(dados).save();
 

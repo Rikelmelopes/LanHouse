@@ -3,12 +3,12 @@
 import Computadore from "App/Models/Computadore";
 
 export default class ComputadoresController {
-  index() {
-    return Computadore.all();
+  async index() {
+    return Computadore.query().preload("marca").preload("venda");
   }
 
-  store({ request }) {
-    const dados = request.only([
+  async store({ request }) {
+    const dados = await request.only([
       "preco",
       "processador",
       "placaVideo",
@@ -17,25 +17,25 @@ export default class ComputadoresController {
       "fonte",
       "memoriaRam",
     ]);
-    return Computadore.create(dados);
+    return await Computadore.create(dados);
   }
 
-  show({ request }) {
-    const id = request.param("id");
-    return Computadore.findOrFail(id);
+  async show({ request }) {
+    const id = await request.param("id");
+    return await Computadore.findOrFail(id);
   }
 
   async destroy({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const computadore = await Computadore.findOrFail(id);
     return computadore.delete();
   }
 
   async update({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const computadore = await Computadore.findOrFail(id);
 
-    const dados = request.only([
+    const dados = await request.only([
       "preco",
       "processador",
       "placaVideo",

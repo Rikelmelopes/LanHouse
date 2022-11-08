@@ -5,6 +5,7 @@ export default class extends BaseSeeder {
   public async run() {
     await Computadore.createMany([
       {
+        marcaId: 1,
         preco: 2500.0,
         processador: "I7",
         placaVideo: "GTX 1050",
