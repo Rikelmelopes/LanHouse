@@ -8,7 +8,7 @@ export default class MarcasController {
   }
 
   async store({ request }) {
-    const dados = await request.only(["nome"]);
+    const dados = await request.validate(MarcasController);
     return await Marca.create(dados);
   }
 
@@ -27,7 +27,7 @@ export default class MarcasController {
     const id = await request.param("id");
     const marca = await Marca.findOrFail(id);
 
-    const dados = await request.only(["nome"]);
+    const dados = await request.validate(MarcasController);
 
     marca.merge(dados).save();
 

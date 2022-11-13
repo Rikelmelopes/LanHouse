@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Provedore from "App/Models/Provedore";
+import ProvedorValidator from "App/Validators/ProvedorValidator";
 
 export default class ProvedoresController {
   async index() {
@@ -8,7 +9,7 @@ export default class ProvedoresController {
   }
 
   async store({ request }) {
-    const dados = await request.only(["cnpj", "nome"]);
+    const dados = await request.validate(ProvedorValidator);
     return await Provedore.create(dados);
   }
 
@@ -27,7 +28,7 @@ export default class ProvedoresController {
     const id = await request.param("id");
     const provedore = await Provedore.findOrFail(id);
 
-    const dados = await request.only(["cnpj", "nome"]);
+    const dados = await request.validate(ProvedorValidator);
 
     provedore.merge(dados).save();
 
