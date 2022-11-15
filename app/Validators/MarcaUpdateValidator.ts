@@ -1,7 +1,7 @@
 import { schema, CustomMessages, rules } from "@ioc:Adonis/Core/Validator";
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 
-export default class MarcaValidator {
+export default class MarcaUpdateValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -24,7 +24,7 @@ export default class MarcaValidator {
    *    ```
    */
   public schema = schema.create({
-    nome: schema.string([
+    nome: schema.string.optional([
       rules.alpha({ allow: ["space"] }),
       rules.unique({ table: "marcas", column: "nome" }),
     ]),

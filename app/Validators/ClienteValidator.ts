@@ -34,13 +34,13 @@ export default class ClienteValidator {
       rules.maxLength(14),
       rules.minLength(11),
       rules.unique({ table: "clientes", column: "telefone" }),
-      rules.regex(/^([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/),
+      //rules.regex(/^([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/),
     ]),
     nome: schema.string.optional([rules.alpha({ allow: ["space"] })]),
     endereco: schema.string([rules.maxLength(50)]),
     dataNascimento: schema.date(),
     email: schema.string([
-      rules.email,
+      rules.email(),
       rules.unique({ table: "clientes", column: "email" }),
     ]),
   });

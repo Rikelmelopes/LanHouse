@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Marca from "App/Models/Marca";
+import MarcaUpdateValidator from "App/Validators/MarcaUpdateValidator";
 
 export default class MarcasController {
   async index() {
@@ -27,7 +28,7 @@ export default class MarcasController {
     const id = await request.param("id");
     const marca = await Marca.findOrFail(id);
 
-    const dados = await request.validate(MarcasController);
+    const dados = await request.validate(MarcaUpdateValidator);
 
     marca.merge(dados).save();
 

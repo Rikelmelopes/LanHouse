@@ -1,7 +1,7 @@
 import { schema, CustomMessages, rules } from "@ioc:Adonis/Core/Validator";
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 
-export default class MarcaValidator {
+export default class ComputadorUpdateValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -24,10 +24,19 @@ export default class MarcaValidator {
    *    ```
    */
   public schema = schema.create({
-    nome: schema.string([
-      rules.alpha({ allow: ["space"] }),
-      rules.unique({ table: "marcas", column: "nome" }),
+    vendaId: schema.number.optional([
+      rules.exists({ table: "computadores", column: "venda_id" }),
     ]),
+    marcaId: schema.number.optional([
+      rules.exists({ table: "computadores", column: "marca_id" }),
+    ]),
+    preco: schema.number.optional(),
+    processador: schema.string.optional(),
+    placaVideo: schema.string.optional(),
+    placaMae: schema.string.optional(),
+    gabinete: schema.string.optional(),
+    fonte: schema.string.optional(),
+    memoriaRam: schema.string.optional(),
   });
 
   /**

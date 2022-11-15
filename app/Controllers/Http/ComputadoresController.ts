@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Computadore from "App/Models/Computadore";
+import ComputadorUpdateValidator from "App/Validators/ComputadorUpdateValidator";
 import ComputadorValidator from "App/Validators/ComputadorValidator";
 
 export default class ComputadoresController {
@@ -28,7 +29,7 @@ export default class ComputadoresController {
     const id = await request.param("id");
     const computadore = await Computadore.findOrFail(id);
 
-    const dados = await request.validate(ComputadorValidator);
+    const dados = await request.validate(ComputadorUpdateValidator);
 
     computadore.merge(dados).save();
 

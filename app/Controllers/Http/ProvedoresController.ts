@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Provedore from "App/Models/Provedore";
+import ProvedorUpdateValidator from "App/Validators/ProvedorUpdateValidator";
 import ProvedorValidator from "App/Validators/ProvedorValidator";
 
 export default class ProvedoresController {
@@ -28,7 +29,7 @@ export default class ProvedoresController {
     const id = await request.param("id");
     const provedore = await Provedore.findOrFail(id);
 
-    const dados = await request.validate(ProvedorValidator);
+    const dados = await request.validate(ProvedorUpdateValidator);
 
     provedore.merge(dados).save();
 
