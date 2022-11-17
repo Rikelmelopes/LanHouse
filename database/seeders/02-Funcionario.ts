@@ -6,13 +6,13 @@ export default class extends BaseSeeder {
   public async run() {
     await Funcionario.createMany([
       {
-        cpf: "08113596117",
-        salario: 2500,
-        nome: "Diogo",
-        telefone: "5561984654655",
+        cpf: "081.135.961-17",
+        salario: 3000,
+        nome: "Maciel",
+        telefone: "5561995037587",
         endereco: "QNO 7 Conjunto F",
         email: "diogo@gmail.com",
-        dataNascimento: new Date(2002, 8, 6),
+        dataNascimento: new Date(1995, 8, 6),
       },
     ]);
     // Write your database queries inside the run method

@@ -6,6 +6,7 @@ export default class extends BaseSeeder {
     await Computadore.createMany([
       {
         marcaId: 1,
+        vendaId: 1,
         preco: 2500.0,
         processador: "I7",
         placaVideo: "GTX 1050",
