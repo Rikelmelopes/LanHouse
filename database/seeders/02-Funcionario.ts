@@ -6,7 +6,7 @@ export default class extends BaseSeeder {
   public async run() {
     await Funcionario.createMany([
       {
-        cpf: "08113596117",
+        cpf: "081.135.961-17",
         salario: 2500,
         nome: "Diogo",
         telefone: "5561984654655",

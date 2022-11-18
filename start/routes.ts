@@ -25,8 +25,8 @@ Route.get("/", async () => {
 });
 
 Route.resource("/cliente", "ClientesController").apiOnly;
-Route.resource("/computadore", "ComputadoresController").apiOnly;
+Route.resource("/computador", "ComputadoresController").apiOnly;
 Route.resource("/funcionario", "FuncionariosController").apiOnly;
 Route.resource("/marca", "MarcasController").apiOnly;
-Route.resource("/provedore", "ProvedoresController").apiOnly;
+Route.resource("/provedor", "ProvedoresController").apiOnly;
 Route.resource("/venda", "VendasController").apiOnly;
