@@ -27,9 +27,7 @@ export default class ProvedorValidator {
     cnpj: schema.string([
       rules.maxLength(18),
       rules.unique({ table: "provedores", column: "cnpj" }),
-      // rules.regex(
-      // /^[0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}$/
-      //),
+      rules.regex(/^[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}$/),
     ]),
     nome: schema.string([
       rules.alpha({ allow: ["space"] }),
