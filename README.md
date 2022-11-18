@@ -1,4 +1,5 @@
-# LanHouse
+# Concessionária
+
 
 ### Iniciar um projeto.
 
@@ -19,6 +20,12 @@
 ### Criar Model e Migration
 
     node ace make:model [nome] -m
+    
+### Rota
+
+```ts
+Route.resource("/cursos", "CursosController").apiOnly();
+```
 
 ### Código de uma migration
 
@@ -62,27 +69,57 @@ table
 ### Codigo de um Model
 
 ```js
-import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from "luxon";
+import {
+  BaseModel,
+  BelongsTo,
+  belongsTo,
+  column,
+  HasMany,
+  hasMany,
+} from "@ioc:Adonis/Lucid/Orm";
+import Motorista from "./Motorista";
+import Carga from "./Carga";
 
-export default class Curso extends BaseModel {
+export default class Caminhao extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: number;
 
   @column()
-  public nome: string
+  public motoristaId: number;
 
   @column()
-  public duracao: number
+  public modelo: string;
 
   @column()
-  public modalidade: string
+  public cabine: string;
+
+  @column()
+  public marca: string;
+
+  @column()
+  public placa: string;
+
+  @column()
+  public cor: string;
+
+  @column()
+  public tipoCaminhao: string;
+
+  @column()
+  public potencia: number;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updatedAt: DateTime;
+
+  @belongsTo(() => Motorista)
+  public motorista: BelongsTo<typeof Motorista>;
+
+  @hasMany(() => Carga)
+  public carga: HasMany<typeof Carga>;
 }
 ```
 
@@ -200,6 +237,62 @@ export default class AlunosController {
 
 ```
 
+### Criando Validator
 
+    node ace make:validator [Nome]
 
+### Exemplo de Validator
 
+```js
+import { schema, rules, CustomMessages } from "@ioc:Adonis/Core/Validator";
+import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+
+export default class AlunoValidator {
+  constructor(protected ctx: HttpContextContract) {}
+
+  public schema = schema.create({
+    nome: schema.string([rules.maxLength(100)]),
+    cpf: schema.number.optional([
+      rules.unique({ table: "alunos", column: "cpf" }),
+    ]),
+    matricula: schema.string([
+      rules.minLength(20),
+      rules.maxLength(20),
+      rules.unique({ table: "alunos", column: "matricula" }),
+    ]),
+    email: schema.string.optional([
+      rules.email(),
+      rules.maxLength(100),
+      rules.unique({ table: "alunos", column: "email" }),
+    ]),
+    telefone: schema.string.optional([
+      rules.range(11, 15),
+      rules.unique({ table: "alunos", column: "telefone" }),
+    ]),
+    cep: schema.string.optional(),
+    logradouro: schema.string.optional([rules.maxLength(100)]),
+    complemento: schema.string.optional([rules.maxLength(100)]),
+    numero: schema.string.optional([rules.maxLength(20)]),
+    bairro: schema.string.optional([rules.maxLength(100)]),
+  });
+
+  public messages: CustomMessages = {};
+}
+```
+
+### Instalando Autentificador
+
+    npm i @adonisjs/auth
+
+### Configurando Autentificador
+    
+```bash
+node ace configure @adonisjs/auth
+# Lucid
+# API token
+# User
+# Yes
+# Database
+# Yes
+npm i phc-argon2
+```
