@@ -56,5 +56,13 @@ export default class ClienteValidator {
    * }
    *
    */
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    unique: "{{ field }} já cadastrado",
+    maxLength:
+      "o número máximo de caractéres do campo {{ field }} é de {{ options.maxLength }}",
+    minLength:
+      "o número máximo de caractéres do campo {{ field }} é de {{ options.minLength }}",
+    required: "o campo {{ field }} é obrigatório",
+    "telefone.regex": "o telefone tem a formatação (00)9999-9999",
+  };
 }

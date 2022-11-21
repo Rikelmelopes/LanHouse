@@ -35,5 +35,9 @@ export default class ProvedorValidator {
     ]),
   });
 
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    unique: "{{ field }} já cadastrado",
+    maxLength:
+      "o número máximo de caractéres do campo {{ field }} é de {{ options.maxLength }}",
+  };
 }

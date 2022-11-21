@@ -57,5 +57,12 @@ export default class FuncionariosUpdateValidator {
    * }
    *
    */
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    unique: "{{ field }} já cadastrado",
+    maxLength:
+      "o número máximo de caractéres do campo {{ field }} é de {{ options.maxLength }}",
+    minLength:
+      "o número máximo de caractéres do campo {{ field }} é de {{ options.minLength }}",
+    required: "o campo {{ field }} é obrigatório",
+  };
 }

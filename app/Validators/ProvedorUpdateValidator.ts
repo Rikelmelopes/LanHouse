@@ -27,9 +27,7 @@ export default class ProvedorUpdateValidator {
     cnpj: schema.string.optional([
       rules.maxLength(18),
       rules.unique({ table: "provedores", column: "cnpj" }),
-      //rules.regex(
-      // /^[0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}$/
-      //),
+      rules.regex(/^[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}$/),
     ]),
     nome: schema.string.optional([
       rules.alpha({ allow: ["space"] }),
@@ -48,5 +46,9 @@ export default class ProvedorUpdateValidator {
    * }
    *
    */
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    unique: "{{ field }} já cadastrado",
+    maxLength:
+      "o número máximo de caractéres do campo {{ field }} é de {{ options.maxLength }}",
+  };
 }
