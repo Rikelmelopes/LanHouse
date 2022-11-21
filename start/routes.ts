@@ -24,9 +24,14 @@ Route.get("/", async () => {
   return { servidor: "ON" };
 });
 
-Route.resource("/cliente", "ClientesController").apiOnly;
-Route.resource("/computador", "ComputadoresController").apiOnly;
-Route.resource("/funcionario", "FuncionariosController").apiOnly;
-Route.resource("/marca", "MarcasController").apiOnly;
-Route.resource("/provedor", "ProvedoresController").apiOnly;
-Route.resource("/venda", "VendasController").apiOnly;
+Route.post("/user", "UsersController.store");
+Route.post("/login", "UsersController.login");
+
+Route.group(() => {
+  Route.resource("/cliente", "ClientesController").apiOnly;
+  Route.resource("/computador", "ComputadoresController").apiOnly;
+  Route.resource("/funcionario", "FuncionariosController").apiOnly;
+  Route.resource("/marca", "MarcasController").apiOnly;
+  Route.resource("/provedor", "ProvedoresController").apiOnly;
+  Route.resource("/venda", "VendasController").apiOnly;
+}).middleware("auth");
